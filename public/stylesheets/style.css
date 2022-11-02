@@ -1,0 +1,245 @@
+*{
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+html,body{
+  width: 100%;
+  height: 100%;
+}
+
+main{
+  width: 100vw;
+  height: 100vh;
+  /* background-image: url(https://images.unsplash.com/photo-1606664150177-1e57d8daf562?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80); */
+  /* background-position: center; */
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+}
+.center{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 90vh;
+  padding: 0px 30px;
+}
+.left{
+  color: rgb(250, 235, 215);
+  display: flex;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#dayimg{
+  margin-top:2rem;
+  margin-right: 1rem;
+  height: 7rem;
+
+}
+.left h1{
+  font-size: 3rem;
+
+}
+.citytemp{
+  margin-top: 2rem;
+}
+.citytemp h3{
+  margin-top: 3px;
+  margin-bottom: 1rem;
+}
+.right{
+  position: absolute;
+  z-index: 1;
+  right: 10vh;
+  top: 10vh;
+}
+.rightele{
+  width: 18vw;
+}
+.righteletext{
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1rem;
+}
+.righteletext h4{
+  font-size: 1.5rem;
+}
+.bottom{
+position: absolute;
+bottom: 2rem;
+overflow: auto;
+width: 68%;
+scroll-behavior: smooth;
+/* background-color: aqua; */
+display: flex;
+flex-wrap: nowrap;
+gap: 1rem;
+justify-content: space-between;
+padding: 0px 4rem;
+cursor: grab;
+}
+.bottom::-webkit-scrollbar {
+  width: 12px;
+}
+
+.bottom::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 20px;
+}
+
+.bottom::-webkit-scrollbar-thumb {
+  background-color: rgb(82, 153, 201);
+  border-radius: 20px;
+  /* border: 3px solid rgb(255, 255, 255); */
+}
+.bottomele{
+  color: #ffffff;
+  display: block;
+
+  flex-shrink: 2;
+  padding: .5rem .8rem;
+  /* background-color: blue; */
+  border-radius: 10px;
+  border: 1.5px solid gray;
+  background-color: rgba(0, 0, 0, 0.363);
+}
+
+.bottomele:hover{
+  background-color: rgba(46, 39, 39, 0.295);
+}
+.bottomele p{
+  margin-bottom: -3.5rem;
+}
+.suggestionbox{
+  /* height: 10vh; */
+  width: 100%;
+  position: absolute;
+  z-index: 999;
+  background-color:aliceblue;
+  border-radius: 10px;
+  top: 2.2rem;
+  
+}
+.speak{
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: rgba(95, 94, 94, 0.281);
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 999;
+  padding: 1rem;
+}
+.speak:hover{
+  opacity: 1;
+  background-color: rgba(240, 248, 255, 0.384);
+}
+.suggestele{
+  padding: 0.4rem;
+  border: 1px solid gray;
+  border-radius: 10px;
+  color: grey;
+  font-family: sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+.suggestele:hover{
+  background-color: rgba(186, 189, 192, 0.144);
+}
+.lay {
+  width: 100vw;
+  height: 100vh;
+
+  font-family: 'Courier New', Courier, monospace;
+
+}
+.lay h1{
+  font-size: 3rem;
+  padding-top: 5rem;
+}
+.bottomele h1{
+  width: 100%;
+  font-size: 2rem;
+}
+
+
+@media screen and (max-width: 600px) {
+  .lay{
+    height: 105vh;
+    /* background: #eee; */
+    /* margin-top: -78vh; */
+    transform: translateY(-20px);
+    padding-bottom: 20vh ;
+    background-color: rgba(0, 0, 0, 0.308);
+    backdrop-filter: blur(20px);
+    border-radius: 60% / 10%;
+    /* transform: translateY(-180px); */
+    transition: .8s ease-in-out;
+  }
+  .menu{
+    padding: 0px;
+  }
+  .ele{
+    width: 23%;
+  }
+  .close{
+    z-index: 9;
+    color: gray;
+    background-color: rgba(128, 128, 128, 0.13);
+  }
+  .close:hover{
+    background-color: rgba(128, 128, 128, 0.219); 
+  }
+  .menuele h1{
+    font-size: 1.8rem;
+  }
+  .lay label{
+    color: #573b8a;
+    transform: scale(.6);
+  }
+  
+  .right{
+    width: 80vw;
+    justify-content: space-between;
+    left: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .rightele{
+    width: 45%;
+    padding: 0.3rem;
+  }
+  .lay h1{
+    padding: 2rem;
+  }
+  .bottom{
+    width: 100vw;
+    height: 35vh;
+    flex-wrap: wrap;
+    overflow: auto;
+  }
+  .bottomele{
+    width: 30vw;
+    padding: 1rem ;
+    margin-bottom: 0.5rem;
+  }
+  .bottomele h1{
+    font-size: 2.3rem;
+  }
+  .bottomele p{
+    font-size: 1.4rem;
+    margin-bottom: 0px;
+  }
+  .otherday{
+    width: 100%;
+    text-align: center;
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 47%;
+    padding: 0px;
+    transform: translate(-50%, -50%);
+  }
+  
+}

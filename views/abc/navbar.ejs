@@ -1,0 +1,234 @@
+<style>
+    .top{
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 30px;
+  color: black;
+  position: fixed;
+  top: 0px;
+  z-index: 999;
+background-color: rgba(128, 128, 128, 0.349);
+}
+.menubar{
+  /* background-color: aqua; */
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  width: 35rem;
+  justify-content: space-between;
+}
+.menubar p{
+  padding: 0.5rem 1rem;
+  background-color: rgba(12, 190, 190, 0.767);
+  border-radius: 20px;
+  font-size: 1.2rem;
+  color: aliceblue;
+  text-transform: capitalize;
+  font-family: sans-serif;
+  font-weight: 800;
+}
+.menubar p:hover{
+  background-color: rgba(7, 211, 211, 0.856);
+  border: 1px solid white;
+}
+.menubar i{
+  color: aliceblue;
+  padding: 0.7rem;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) all 2ms;
+}
+.input{
+  display: flex;
+  width: 15rem;
+  height: 2.2rem;
+  background-color: aliceblue;
+  border-radius: 30px;        
+  align-items: center;
+  /* overflow: hidden; */
+  position: relative;
+}
+.input input{
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  width: 80%;
+  padding-left: 3px;
+  height: 100%;
+  background-color: aliceblue;
+  border-radius: 20px;
+}
+.input i{
+  color: black;
+}
+.menubar i:hover{
+  background-color: rgba(255, 255, 255, 0.301);
+  /* color: black; */
+}
+.top i{
+  font-size: 1.4rem;
+  border-radius: 50%;
+}
+.top > img{
+  height: 14vh;
+}
+.menu{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0ch;
+  z-index:9999;
+  padding: 0px 5rem;
+  background-color: rgba(71, 88, 88, 0.603);
+  display: flex;
+  justify-content: space-between;
+  right: -100vw;
+}
+.ele{
+  width: 18%;
+  background-color: antiquewhite;
+  height: 4rem;
+  position: relative;
+  transform: translate(0%,-100%);
+}
+.menuele{
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+}
+.menuele img{
+  width: 70%;
+  /* height: 10rem; */
+  /* border-radius: 50%; */
+  position: absolute;
+  left: 50%;
+  bottom: 3rem;
+  transform: translate(-50%, 0%);
+  /* margin-left: auto; */
+}
+.menuele h1{
+  font-family: Impact, sans-serif;
+  font-size: 3rem;
+  width: 100%;
+  font-weight: 100;
+  color: rgba(73, 73, 73, 0.555);
+  text-align: center;
+}
+.close{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: white;
+  font-size: 1.7rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+.close:hover{
+  background-color: rgba(250, 235, 215, 0.418);
+}
+@media screen and (max-width:600px) {
+  .menu{
+    padding: 0px;
+  }
+  .ele{
+    width: 23%;
+  }
+  .close{
+    z-index: 9;
+    color: gray;
+    background-color: rgba(128, 128, 128, 0.13);
+  }
+  .close:hover{
+    background-color: rgba(128, 128, 128, 0.219); 
+  }
+  .menuele h1{
+    font-size: 1.8rem;
+  }
+  .input{
+    width: 25vw;
+  }
+  .menubar p{
+    font-size: .8rem;
+  }
+}
+</style>
+<div class="top">
+    <img src="./images/cloudy-night-weather-forecast-info-icon-cloud-moon-symbol-paper-cut-style-blue-climate-weather-element-trendy-button-143071447-removebg-preview.png" alt="">
+    <div class="menubar">
+        <div class="input">
+            <div class="suggestionbox suggestion">
+            </div>
+            <i class="ri-search-line" id="search"></i>
+            <input type="text" class="forminput" placeholder="Write city name">
+            
+        </div>
+        <a href="/login2">
+          <p class="loginnav">login</p>
+        </a>
+        <a href="/">
+          <p>Dashboard</p>
+        </a>
+        <i class="ri-menu-4-fill menui"></i>
+    </div>
+</div>
+
+<div class="menu">
+    <i class="ri-close-fill close" ></i>
+    <div class="ele" style="height: 15rem;">
+       <a href="/profile">
+           <div class="menuele">
+               <img src="./images/31369733-removebg-preview (1).png" alt="">
+               <h1>Profile</h1>
+            </div>
+        </a>
+        </div>
+    <div class="ele" style="height: 20rem;">
+        <a href="/forecast">
+
+            <div class="menuele">
+                <img src="./images/7-days.png" class="week" style="margin-bottom: 5rem; width: 55%;" alt="">
+                <h1>Weather</h1>
+            </div>
+        </a>
+    </div>
+    <div class="ele" id="emailbtn" style="height: 25rem;">
+        <div class="menuele">
+            <img src="./images/icons8-email-64.png" class="email" style="margin-bottom: 5rem; width: 55%;"  alt="">
+            <h1>Weather Email</h1>
+        </div>
+    </div>
+    <div class="ele" style="height: 30rem;">
+        <a href="/logout">
+        <div class="menuele">
+            <img src="./images/logout.png" class="logout" style="margin-bottom: 1rem; width: 55%;"  alt="">
+            <h1>Logout</h1>
+        </div>
+    </a>
+    </div>
+</div>
+<script>
+    
+    document.querySelector('.menui').addEventListener('click', function(){
+        
+        document.querySelector('.menu').style.right = '0px'
+        gsap.to(".ele",{  
+        delay: 0.2,
+        y:  0,
+        stagger: 0.1
+        })
+    })
+    document.querySelector('.close').addEventListener('click', function(){
+        gsap.to(".ele",{  
+            delay: 0.2,
+            y:  "-100%",
+            stagger: 0.1
+        }).then(function(){
+            document.querySelector('.menu').style.right = '-100vw'
+        })
+    
+    })
+    
+    // output some text to the console as the callback
+    
+    </script>
+    

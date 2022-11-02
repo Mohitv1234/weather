@@ -1,0 +1,28 @@
+.arrow{
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    z-index: 9999;
+    top: 50vh;
+    color: white;
+    font-size: 3rem;
+    transform: translate(0%, -50%);
+}
+.arrow i{
+    padding: 1rem;
+    background-color: rgba(128, 128, 128, 0.24);
+}
+.arrow i:hover{
+    background-color: rgba(128, 128, 128, 0.384);
+
+}
+.main{
+    background-size: cover;
+    background-position: center;
+}
+main{
+    transform-origin: center;
+    margin:auto;
+    transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 1s;
+}

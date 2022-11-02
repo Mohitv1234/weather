@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="./stylesheets/style2.css">
+    <title>Document</title>
+</head>
+
+<body style="width: 100vw;  height: 100vw; overflow: hidden; ">
+    <%- include('abc/navbar') %>
+        <img src="./images/sound.png" class="speak" alt="">
+    
+    <div class="arrow">
+        <i class="ri-arrow-left-s-line" id="leftar"></i>
+        <i class="ri-arrow-right-s-line" id="rightar"></i>
+    </div>
+    <div class="main" style="width: 100vw; height: 100vh; overflow: hidden; margin-top: 0px;">
+    <% data.forEach(function(ele){%>
+    <main style="width: 100vw; height: 100vh;">
+
+        
+        <div class="center">
+        <div class="left" style="margin-top: 9vh;">
+          <img src="./images/<%=ele.day.condition.text%>.png" id="dayimg" alt="">
+            <div class="citytemp">
+                <h1 id="skytext"><%=ele.day.condition.text%></h1>
+                <h1 id="temp"><%=ele.day.maxtemp_c%> <span style="font-size: 1rem; margin-top: -1rem;">0</span></h1>
+            </div>
+
+        </div>
+        
+    </div>
+    
+    <div class="lay">
+            <h1 style="text-align: center; color: white;">Know more</h1>
+            <div class="right">
+                <div class="rightele go" >
+                    <img src="" alt="">
+                    <div class="righteletext ">
+                        <p>Humidity</p>
+                        <h4 id = "humidity"><%=ele.day.avghumidity%></h4>
+                    </div>
+                </div>
+                
+                <div class="rightele go">
+                    <img src="" alt="">
+                    <div class="righteletext">
+                        <p>Wind Speed</p>
+                        <h4 id="windspeed"><%=ele.day.maxwind_kph%> Km/h</h4>
+                    </div>
+                </div>
+                <div class="rightele">
+                    <img src="" alt="">
+                    <div class="righteletext">
+                        <p>Rain Chances</p>
+                        <h4 id="day"><%=ele.day.daily_chance_of_rain%></h4>
+                    </div>
+                </div>
+                <div class="rightele">
+                    <img src="" alt="">
+                    <div class="righteletext">
+                        <p>Date</p>
+                        <h4 id="date"><%=ele.date%></h4>
+                    </div>
+                </div>
+                <div class="rightele go">
+                    <img src="" alt="">
+                    <div class="righteletext">
+                        <p>Sun Rise At</p>
+                        <h4 id="winddisplay"><%=ele.astro.sunrise%></h4>
+                    </div>
+                </div>
+                <div class="rightele go">
+                    <img src="" alt="">
+                    <div class="righteletext">
+                        <p>Sunset</p>
+                        <h4 id="feelslike"><%=ele.astro.sunset%></h4>
+                    </div>
+                </div>
+            </div>
+            <h1 class="otherday">Hours</h1>
+            <div class="bottom">
+            <%ele.hour.forEach(function(h){%>
+                <div class="bottomele">
+                    <p><%=h.time%></p>
+                    <h1><%=h.temp_c%><span style="font-size: 0.7rem;  position:absolute; ">0</span> C</h1>
+                </div>
+            <%})%>
+            </div>
+         </div>
+        
+        </main>
+        <%})%>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js" integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js" integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- <script src="./javascripts/script.js"></script>     -->
+<script>
+    async function getNewImage() {
+      let randomNumber = Math.floor(Math.random() * 10);
+      return fetch(requestUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          let allImages = data.results[randomNumber];
+          return allImages.urls.regular;
+        });
+    }
+var requestUrl;
+changeimg();
+    //change img on page
+    var index = 0;
+    async function changeimg(data) {
+      requestUrl = `https://api.unsplash.com/search/photos?query=<%=data[0].day.condition.text%> day&client_id=Yg1a0mov6k2qf-EgSQ4xnPR6O-eNf8b3FPGagRpOBH4`;
+
+      let randomImage = await getNewImage();
+      document.querySelectorAll('main').forEach(function(ele){
+          ele.style.backgroundImage = ` linear-gradient(
+              rgba(0, 0, 0, 0.2), 
+              rgba(0, 0, 0, 0.2)
+              ),url(${randomImage})`;
+      })
+    }
+    var konwbol = true;
+    document.querySelectorAll('.lay h1').forEach(function(ele){
+
+        ele.addEventListener('click', function(){
+            if(konwbol){
+                this.parentNode.style.marginTop = '-90vh'
+            this.textContent = 'Know less'
+            konwbol = false;
+        }else{
+            this.parentNode.style.marginTop = 'initial'
+            this.textContent = 'Know more'
+            konwbol = true;
+        }
+    })
+})
+    var sider = 0;
+    document.querySelector('#leftar').addEventListener('click', function(){
+        console.log(sider)
+        if(0>sider){
+            sider += 100;
+            if(sider===0){
+    speaktext = `Today is <%=data[0].date%> sunrise at <%=data[0].astro.sunset%> Day Start with <%=data[0].day.condition.text%> day temparature <%=data[0].day.maxtemp_c%> degree celcious windspeed <%=data[0].day.maxwind_kph%> kilometers per hour humidity are <%=data[0].day.avghumidity%> Chances for rain are <%=data[0].day.daily_chance_of_rain%> I Hope your day is good thank for coming on the this website`
+            }
+            if(sider===-100){
+    speaktext = `Today is <%=data[1].date%> sunrise at <%=data[1].astro.sunset%> Day Start with <%=data[1].day.condition.text%> day temparature <%=data[1].day.maxtemp_c%> degree celcious windspeed <%=data[1].day.maxwind_kph%> kilometers per hour humidity are <%=data[1].day.avghumidity%> Chances for rain are <%=data[1].day.daily_chance_of_rain%> I Hope your day is good thank for coming on the this website`
+            }if(sider===-200){
+    speaktext = `Today is <%=data[2].date%> sunrise at <%=data[2].astro.sunset%> Day Start with <%=data[2].day.condition.text%> day temparature <%=data[2].day.maxtemp_c%> degree celcious windspeed <%=data[2].day.maxwind_kph%> kilometers per hour humidity are <%=data[2].day.avghumidity%> Chances for rain are <%=data[2].day.daily_chance_of_rain%> I Hope your day is good thank for coming on the this website`
+            }
+            index--
+
+            var tl = gsap.timeline();
+tl
+.to('main', {
+    height: '80vh',
+    width:'80vw',
+    duration: .7,
+    ease: "power1.inOut"
+})
+.to('main',{
+    y: `${sider}vh`,
+    duration: .5,
+    delay: .5,
+    simple: true,
+
+    stagger: 0.07,
+    duration: 0.7,
+    ease: "power2.inOut",
+})
+.to('main', {
+    height: '100vh',
+    width:'100vw',
+    duration: .7,
+    ease: "power1.inOut"
+}) 
+        }
+    })     
+    document.querySelector('#rightar').addEventListener('click', function(){
+        console.log(sider)
+        
+        if(-200<sider){
+            sider -= 100;
+            if(sider===0){
+    speaktext = `Today is <%=data[0].date%> sunrise at <%=data[0].astro.sunset%> Day Start with <%=data[0].day.condition.text%> day temparature <%=data[0].day.maxtemp_c%> degree celcious windspeed <%=data[0].day.maxwind_kph%> kilometers per hour humidity are <%=data[0].day.avghumidity%> Chances for rain are <%=data[0].day.daily_chance_of_rain%> I Hope your day is good thank for coming on the this website`
+            }
+            if(sider===-100){
+    speaktext = `Today is <%=data[1].date%> sunrise at <%=data[1].astro.sunset%> Day Start with <%=data[1].day.condition.text%> day temparature <%=data[1].day.maxtemp_c%> degree celcious windspeed <%=data[1].day.maxwind_kph%> kilometers per hour humidity are <%=data[1].day.avghumidity%> Chances for rain are <%=data[1].day.daily_chance_of_rain%> I Hope your day is good thank for coming on the this website`
+            }if(sider===-200){
+    speaktext = `Today is <%=data[2].date%> sunrise at <%=data[2].astro.sunset%> Day Start with <%=data[2].day.condition.text%> day temparature <%=data[2].day.maxtemp_c%> degree celcious windspeed <%=data[2].day.maxwind_kph%> kilometers per hour humidity are <%=data[2].day.avghumidity%> Chances for rain are <%=data[2].day.daily_chance_of_rain%> I Hope your day is good thank for coming on the this website`
+            }
+            var tl = gsap.timeline();
+tl
+.to('main', {
+    height: '80vh',
+    width:'80vw',
+    duration: .7,
+    ease: "power1.inOut"
+})
+.to('main',{
+    y: `${sider}vh`,
+    duration: .5,
+    delay: .5,
+    stagger: 0.07,
+    simple: true,
+
+    duration: 0.7,
+    ease: "power2.inOut",
+})
+.to('main', {
+    height: '100vh',
+    width:'100vw',
+    duration: .7,
+    ease: "power1.inOut"
+}) 
+        }
+    })   
+    var speaktext;
+    document.querySelector('.speak').addEventListener('click', function(){
+    axios.post('/speak',{
+      text: speaktext,
+    }).then(function(data){
+      console.log(data.data);
+    })
+  })  
+  document.querySelector('.input').style.opacity = '0'; 
+
+  document.querySelector('.loginnav').style.opacity = '0';    
+</script>
+</body>
+</html>
